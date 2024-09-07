@@ -18,19 +18,19 @@ module square_base(x,y,z) {
 }
 
 // Function to generate the wireframe of a cube
-module crate() {
+module crate(x,y,z) {
 
     // Bottom square
-    square_base(0,0,0);
+    square_base(x,y,z);
 
     // Top square
-    square_base(0,crate_width-2*OD,0);
+    square_base(x,y+crate_width-2*OD,z);
 
     // Vertical edges (from bottom to top)
-    translate([0, crate_length-2*OD, 0]) rotate([90, 0, 0]) square_tube(crate_height, OD, wall_thickness);
-    translate([crate_length - OD, crate_length-2*OD, 0]) rotate([90, 0, 0]) square_tube(crate_height, OD, wall_thickness);
-    translate([0, crate_length-2*OD, crate_length-OD]) rotate([90, 0, 0]) square_tube(crate_height, OD, wall_thickness);
-    translate([crate_length - OD, crate_length-OD, crate_length-OD]) rotate([90, 0, 0]) square_tube(crate_height, OD, wall_thickness);
+    translate([x, y+crate_length-2*OD, z]) rotate([90, 0, 0]) square_tube(crate_height, OD, wall_thickness);
+    translate([x+crate_length - OD, y+crate_length-2*OD, z]) rotate([90, 0, 0]) square_tube(crate_height, OD, wall_thickness);
+    translate([x, y+crate_length-2*OD, z+crate_length-OD]) rotate([90, 0, 0]) square_tube(crate_height, OD, wall_thickness);
+    translate([x+crate_length - OD, y+crate_length-OD, z+crate_length-OD]) rotate([90, 0, 0]) square_tube(crate_height, OD, wall_thickness);
 
 
 }
