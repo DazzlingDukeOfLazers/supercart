@@ -4,6 +4,7 @@ OD = 1 * inch;         // Outer dimension (OD) of 1 inch for the square tube
 wall_thickness = 1/8 * inch;  // Wall thickness of 1/8 inch
 length = 13 * inch * 3;   // Longer side of the rectangle (L = 13 inches * 3)
 width = 13 * inch * 2;    // Shorter side of the rectangle (W = 13 inches * 2)
+crate_width = 13 * inch;  // Width of the crate
 
 // Function to create a hollow square tube with specified length
 module square_tube(length) {
@@ -18,7 +19,11 @@ module square_tube(length) {
 }
 
 use <crate.scad>;  // Import the crate module from crate.scad
-crate();           // Call the crate module to generate the wireframe crate
+crate(2*OD,0,0);           // Call the crate module to generate the wireframe crate
+translate([crate_width, 0,0])crate(2*OD,0,0);           // Call the crate module to generate the wireframe crate
+
+use <cooler.scad>;  // Import the coolers module from coolers.scad
+cooler(0,0,0);           // Call the coolers module to generate the wireframe cooler
 
 // First square tube along the z-axis (shorter side, W)
 translate([OD, OD, 0])  // Offset to align along the Z-axis
